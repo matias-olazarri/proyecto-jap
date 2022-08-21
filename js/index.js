@@ -12,3 +12,20 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
+
+
+
+
+
+function cerrar(){
+    window.location.href="index.html";
+}
+document.addEventListener("DOMContentLoaded",function ()  {
+    document.getElementById("logout").addEventListener("click", () => {
+    cerrar();
+    })
+
+ })
+
+
+
