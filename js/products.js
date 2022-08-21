@@ -2,11 +2,11 @@
 let productsArray = [];
 
 //función que recibe un array con los datos, y los muestra en pantalla a través el uso del DOM
-function showProductsList(array){
+function showProductsList(array) {
     let htmlContentToAppend = "";
     let registro = array.products
 
-    for(let i = 0; i < registro.length; i++){ 
+    for (let i = 0; i < registro.length; i++) {
         let products = registro[i];
         htmlContentToAppend += `
         <div class="list-group-item list-group-item-action">
@@ -18,9 +18,9 @@ function showProductsList(array){
                 <div class="col">
                     <div class="d-flex w-100 justify-content-between">
                         <div class="mb-1">
-                        <h4> <b>`+ products.name +`</b> </h4> 
-                        <h4>`+ products.currency + '  ' + products.cost  + `</h4> 
-                        <p> `+ products.description +`</p> 
+                        <h4> <b>`+ products.name + `</b> </h4> 
+                        <h4>`+ products.currency + '  ' + products.cost + `</h4> 
+                        <p> `+ products.description + `</p> 
                         </div>
                         <small class="text-muted">` + products.soldCount + ` vendidos</small> 
                     </div>
@@ -29,7 +29,7 @@ function showProductsList(array){
             </div>
         </div>
         `
-        document.getElementById("products-list").innerHTML = htmlContentToAppend; 
+        document.getElementById("products-list").innerHTML = htmlContentToAppend;
     }
 }
 
@@ -41,10 +41,9 @@ function showProductsList(array){
 
 
 
-document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(PRODUCTS_URL).then(function(resultObj){
-        if (resultObj.status === "ok")
-        {
+document.addEventListener("DOMContentLoaded", function (e) {
+    getJSONData(PRODUCTS_URL).then(function (resultObj) {
+        if (resultObj.status === "ok") {
             productsArray = resultObj.data;
             showProductsList(productsArray);
         }
