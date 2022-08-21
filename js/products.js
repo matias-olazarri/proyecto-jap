@@ -36,7 +36,7 @@ function showProductsList(array) {
 // EJECUCIÓN:
 
 // -Al cargar la página se llama a getJSONData() pasándole por parámetro la dirección para obtener el listado.
-// -Se verifica el estado del objeto que devuelve, y, si es correcto, se cargan los datos en categoriesArray.
+// -Se verifica el estado del objeto que devuelve, y, si es correcto, se cargan los datos en productsArray.
 // -Por último, se llama a  showProductsList pasándole por parámetro productsArray.
 
 
