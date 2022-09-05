@@ -1,19 +1,16 @@
 let miFormulario = document.getElementById('login-form');
 
-miFormulario.addEventListener('submit', function (evento) {
+miFormulario.addEventListener('submit', function(evento){
     let clave = document.getElementById('password');
     let usuario = document.getElementById('usuario');
 
-    let miTexto = usuario.value;
-    console.log(miTexto);
-
-
-    if (clave != "" && miTexto != "") {
+    if (clave != "" && usuario.value != "") {
         evento.preventDefault();
+        localStorage.setItem("user", usuario.value);
         window.location.href = 'home.html';
-
+       
     }
-
+ 
 });
 
 
