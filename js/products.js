@@ -3,6 +3,12 @@ let maxCost = undefined;
 //array donde se cargarán los datos recibidos:
 let productsArray = []
 
+function setProductID(id) {
+  localStorage.setItem("prodID", id);
+  window.location = "product-info.html";
+}
+
+
 function showProductsList() {
     let htmlContentToAppend = "";
   
@@ -15,7 +21,7 @@ for (let i = 0; i < productsArray.length; i++) {
             ((maxCost == undefined) || (maxCost != undefined && products.cost <= maxCost))){
 
         htmlContentToAppend += `
-        <div class="list-group-item list-group-item-action">
+        <div onclick="setProductID(${products.id})" class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col-3">
                     <img src="` + products.image + `" alt="products image" class="img-thumbnail">
@@ -109,3 +115,5 @@ document.addEventListener("DOMContentLoaded", function (e) {
     });
   
   });
+
+  

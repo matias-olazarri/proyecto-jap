@@ -13,13 +13,14 @@
 </head>
 
 <body>
-  
+
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="nav-link active" href="home.html">Inicio</a>
       <a class="nav-link active" href="categories.html">Categorías</a>
       <a class="nav-link active" href="sell.html">Vender</a>
-      <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
         Bienvenido
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -28,11 +29,43 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+
+<!-- -----------------div contenedor productos----------------- -->
+    <div class="container" id="product-container">
     </div>
+    <hr>
+    <!-- -----------------Comentarios----------------- -->
+    <h3 class="text-center fw-bold">Comentarios</h3>
+    <div class="container" id="showComent">
+
+    </div>
+    <div class="container" id="showMyComent">
+
+    </div>
+    <br>
+    <h4 class="text-center fw-bold">Comentar</h4>
+
+    <div class="list-group-item container " id="seccionComentar">
+      <div class="d-flex justify-content-center flex-column">
+        <p class="fw-bold">Tu opinion:</p>
+        <textarea cols="40" rows="3" id="comentario"></textarea>
+        <p class="fw-bold">Tu puntuacion:</p>
+        <div class="flex-fill">
+          <select class="p-3 small-list flex-fill" name="score" id="puntuacion">
+            <option value="" disabled selected> Puntuación </option>
+            <option value="1" alt="1" class="fa fa-star text-primary">★</option>
+            <option value="2" alt="2" class="fa fa-star text-primary">★★</option>
+            <option value="3" alt="3" class="fa fa-star text-primary">★★★</option>
+            <option value="4" alt="4" class="fa fa-star text-primary">★★★★</option>
+            <option value="5" alt="5" class="fa fa-star text-primary">★★★★★</option>
+          </select>
+          <br> <br>
+          <div class="flex-fill">
+            <input class="btn btn-primary" type="submit" id="btnComentar">
+          </div>
+        </div>
+
+      </div>
   </main>
   <footer class="text-muted">
     <div class="container">
