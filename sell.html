@@ -12,17 +12,21 @@
 </head>
 
 <body>
-  
+
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="nav-link active" href="home.html">Inicio</a>
       <a class="nav-link active" href="categories.html">Categorías</a>
       <a class="nav-link active" href="sell.html">Vender</a>
-      <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Bienvenido
+
+      <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
       </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="nav-link" id="logout" href="index.html">Cerrar sesion</a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item text-center" id="logout" href="cart.html">Mi carrito</a>
+        <a class="dropdown-item text-center" id="logout" href="my-profile.html">Mi perfil</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item text-center" id="logout" href="index.html">Cerrar sesion</a>
       </div>
     </div>
   </nav>
@@ -63,15 +67,16 @@
           <div class="row">
             <div class="col-md-3 mb-3">
               <label for="productCostInput">Costo</label>
-              <input type="number" name="productCostInput" class="form-control" id="productCostInput" placeholder="" required="" value="0"
-                min="0">
+              <input type="number" name="productCostInput" class="form-control" id="productCostInput" placeholder=""
+                required="" value="0" min="0">
               <div class="invalid-feedback">
                 El costo debe ser mayor que 0.
               </div>
             </div>
             <div class="col-md-4 mb-3">
               <label for="productCurrency">Moneda</label>
-              <select name="productCurrency" class="form-select custom-select d-block w-100" id="productCurrency" required>
+              <select name="productCurrency" class="form-select custom-select d-block w-100" id="productCurrency"
+                required>
                 <option value="" hidden selected>Seleccionar moneda</option>
                 <option>Pesos Uruguayos (UYU)</option>
                 <option>Dólares (USD)</option>
@@ -101,8 +106,8 @@
           <div class="row">
             <div class="col-md-3 mb-3">
               <label for="productCountInput">Cantidad en stock</label>
-              <input type="number" name="productCountInput" class="form-control" id="productCountInput"  required value="1"
-                min="0">
+              <input type="number" name="productCountInput" class="form-control" id="productCountInput" required
+                value="1" min="0">
               <div class="invalid-feedback">
                 La cantidad es requerida.
               </div>
