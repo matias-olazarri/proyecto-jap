@@ -18,7 +18,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function cerrar() {
+    localStorage.removeItem('user');
     window.location.href = "index.html";
+    
 }
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("logout").addEventListener("click", () => {
@@ -26,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 
 })
+
 
 
 
