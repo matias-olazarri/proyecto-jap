@@ -106,7 +106,20 @@ function validateForm() {
         document.getElementById('msjErrorFormaPago').innerHTML = 'Ingrese forma de pago'
     } else {
         document.getElementById('msjErrorFormaPago').innerHTML = ''
+        
     }
     realTime = true
 
+}
+
+function alert(){
+    let htmlContentToAppend = "";
+    htmlContentToAppend += `
+    <div class="alert alert-success alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Genial!</strong> ¡Has comprado con Exito!
+  </div>
+
+    `
+    document.getElementById("alert-succes").innerHTML = htmlContentToAppend;
 }
