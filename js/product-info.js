@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     if (resultObj.status === "ok") {
       infoProductsArray = resultObj.data
       showArrayProd();
+      comprar();
     }
   });
 
@@ -36,6 +37,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }
   });
 });
+
+
 
 
 
@@ -103,20 +106,20 @@ function showArrayProd() {
       </div>
   
       <div class="form-group row">
-        <p class="mb-1 p-3"><span class="fw-bold">Categoria:</span> ${infoProductsArray.category}</p>
+        <p class="mb-1 p-2"><span class="fw-bold">Categoria:</span> ${infoProductsArray.category}</p>
       </div>
   
       <div class="form-group row">
-        <label class="col-sm-2 fw-bold p-3">Descripción:</label>
-        <div class="col-sm-8 col-md-9 p-3">
+        <label class="col-sm-2 fw-bold p-2">Descripción:</label>
+        <div class="col-sm-8 col-md-9 p-2">
           <p>${infoProductsArray.description}</p>
         </div>
       </div>
   
       <div class="form-group row">
-        <p class="mb-1 p-3"><span class="fw-bold">Cantidad vendidos:</span> ${infoProductsArray.soldCount}</p>
+        <p class="mb-1 p-2"><span class="fw-bold">Cantidad vendidos:</span> ${infoProductsArray.soldCount}</p>
       </div>
-  
+      <button onclick="windowCart()" class="btn btn-primary col-2 mb-5 mt-2 btnheight" id="comprar">Comprar</button>
   
   
     </div>
@@ -248,4 +251,37 @@ function showArrayProdRel() {
         `
     document.getElementById("product-rel").innerHTML = htmlContentToAppend;
   }
+}
+
+
+
+function comprar(){
+
+  document.getElementById("comprar").addEventListener("click", ()=>{
+    let listOfArticles = []
+    let newArticleOnCart = {
+      "id": infoProductsArray.id,
+      "name": infoProductsArray.name,
+      "count": 1,
+      "unitCost": infoProductsArray.cost,
+      "image": infoProductsArray.images[0],
+      "currency": infoProductsArray.currency
+    }
+  
+    if(localStorage.getItem("articles") == undefined){
+      listOfArticles.push(newArticleOnCart);
+      localStorage.setItem("articles",JSON.stringify(listOfArticles));
+    }else{
+      listOfArticles = JSON.parse(localStorage.getItem("articles"));
+      localStorage.removeItem("articles");
+      listOfArticles.push(newArticleOnCart);
+      localStorage.setItem("articles",JSON.stringify(listOfArticles));
+    }
+  })
+}
+
+
+
+function windowCart() {
+  window.location = "cart.html";
 }

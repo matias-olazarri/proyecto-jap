@@ -12,14 +12,15 @@
 </head>
 
 <body>
-  
+
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="nav-link active" href="home.html">Inicio</a>
       <a class="nav-link active" href="categories.html">Categorías</a>
       <a class="nav-link active" href="sell.html">Vender</a>
-      
-      <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+      <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
       </a>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         <a class="dropdown-item text-center" id="logout" href="cart.html">Mi carrito</a>
@@ -31,9 +32,189 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+      <h2 class="text-center mt-2"><span class="fa fa-shopping-cart"></span> Carrito de compras</h2>
+      <hr>
+      <h3 class="text-center text-muted mt-2">Articulos a comprar</h3>
+      <table class="table text-center text-muted mt-2">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Costo</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody id="products-cart">
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="container pt-5">
+      <hr>
+      <form method="post" action="#" class="row g-3 needs-validation" id="form"
+        onsubmit="alert('¡Has comprado con éxito!'); localStorage.removeItem('articles');" location.reload()>
+<!-- -----------------Tipo de envios----------------- -->
+        <div>
+          <h3 class="mt-4">Tipo de envío</h3>
+          <div class="form-check">
+            <input  type="radio" name="tipoEnvio" value="15" id="premium"
+              onchange="totalCost()" checked >
+            <label for="premium">
+              Premium 2 a 5 días (15%)
+            </label>
+          </div>
+          <div class="form-check">
+            <input  type="radio" name="tipoEnvio" value="7" id="express"
+              onchange="totalCost()" >
+            <label  for="express">
+              Express 5 a 8 días (7%)
+            </label>
+          </div>
+          <div class="form-check">
+            <input type="radio" name="tipoEnvio" value="5" id="standard"
+              onchange="totalCost()" >
+            <label for="standard">
+              Standard 12 a 15 días (5%)
+            </label>
+
+          </div>
+        </div>
+        <!-- -----------------Direccion de envio----------------- -->
+        <div class="border-bottom">
+          <h3 class="mt-4">Dirección de envío</h3>
+          <div class="mb-4">
+            <div class="row">
+              <div class="col col-md-6">
+                <label for="street" class="form-label">Calle</label>
+                <input type="text" class="form-control" name="street" id="street" required>
+                <div class="invalid-feedback">Ingresar una calle</div>
+
+              </div>
+              <div class="col col-md-4">
+                <label for="number-street" class="form-label">Número</label>
+                <input type="text" class="form-control" name="numberStreet" id="number-street" required>
+                <div class="invalid-feedback">Ingresar un número</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col col-md-6 mt-2">
+                <label for="corner-street" class="form-label">Esquina</label>
+                <input type="text" class="form-control" name="cornerStreet" id="corner-street" required>
+                <div class="invalid-feedback">Ingresar una esquina</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- -----------------Costos----------------- -->
+        <div class="border-bottom">
+          <h3 class="mt-4">Costos</h3>
+          <div>
+            <div class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <p class="m-0 fw-bold">Subtotal</p>
+                <p class="m-0">USD <span id="subTotal"></span></p>
+              </div>
+              <p class="m-0">Costo unitario del producto por cantidad</p>
+              <p class="m-0">Tipo de cambio 1 USD = 41 UYU</p>
+            </div>
+            <div class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <p class="m-0 fw-bold">Costo de envió</p>
+                <p class="m-0">USD <span id="envio"></span></p>
+              </div>
+              <p class="m-0">Según el tipo de envió</p>
+            </div>
+            <div class="list-group-item mb-4">
+              <div class="d-flex justify-content-between">
+                <p class="m-0 fw-bold">Total ($)</p>
+                <p class="m-0 fw-bold">USD <span id="total"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- -----------------Forma de pago----------------- -->
+        <h2 class="mt-4">Forma de pago</h2>
+
+        <div class=" d-flex">
+          <p id="txtFormaPago">No ha seleccionado.</p>
+          <a data-bs-toggle="modal" data-target="#modalFormaPago" href="#modalFormaPago"
+            id="linkFormaPago">Seleccionar</a>
+
+        </div>
+        <p class="text-danger" id="msjErrorFormaPago"></p>
+        <div class="modal fade" id="modalFormaPago" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="exampleModalLongTitle">Forma de pago</h5>
+              </div>
+              <div class="modal-body">
+                <div>
+                  <input type="radio" id="tarjeta" name="formaPago" onchange="deactivatePaymentMethod()" required>
+                  <label for="tarjeta">Tarjeta de crédito</label>
+                </div>
+                <hr>
+                <div class="row mb-3">
+                  <div class="col">
+                    <div class="form-outline">
+                      <label class="form-label" for="numTarjeta">Número de tarjeta</label>
+                      <input type="text" id="numTarjeta" class="form-control" disabled required>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-outline">
+                      <label class="form-label" for="codigoSeg">Código de seg.</label>
+                      <input type="text" id="codigoSeg" class="form-control" disabled required >
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col">
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="vencimiento">Vencimiento (MM/AA)</label>
+                      <input type="text" id="vencimiento" class="form-control" disabled required>
+                    </div>
+                  </div>
+                  <div class="col">
+                  </div>
+                </div>
+                <div>
+                  <input type="radio" id="transferencia" name="formaPago" onchange="deactivatePaymentMethod()" required>
+                  <label for="transferencia">Transferencia bancaria</label>
+                </div>
+                <hr>
+                <div class="row mb-3">
+                  <div class="col">
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="numCuenta">Número de cuenta</label>
+                      <input type="text" id="numCuenta" class="form-control" disabled required>
+                    </div>
+                  </div>
+                  <div class="col">
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                  onclick="if (realTime) {validateForm()}">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="validateForm()">Finalizar compra</button>
+
+      </form>
+
+    </div>
+
+    </form>
+
+    </div>
+    </div>
+    </div>
     </div>
   </main>
   <footer class="text-muted">
